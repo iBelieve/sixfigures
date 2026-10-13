@@ -5,12 +5,16 @@ import {
   threshold,
   cpiMonthLabel,
   cpiSource,
-  ssaSources,
+  firstYear,
+  latestSsaYear,
+  describe,
   formatDollars,
   formatThousands,
   formatPercent,
   oneIn,
 } from '../lib/sixfigures';
+
+const defaultSalary = 150000;
 
 const title = "What's Six Figures Worth?";
 const first = rows[0];
@@ -19,7 +23,7 @@ const description =
   `${formatThousands(threshold)} in ${first.year} = ${formatThousands(first.todayDollars)} today. ` +
   `About 1 in ${oneIn(first.share)} earners made six figures then; about 1 in ${oneIn(baseline.share)} do now.`;
 const canonical = new URL('/', Astro.site).href;
-const latestSsaYear = baseline.shareYear;
+const link = 'underline underline-offset-2 hover:text-stone-900 dark:hover:text-stone-100';
 ---
 
 <!doctype html>
@@ -91,12 +95,31 @@ const latestSsaYear = baseline.shareYear;
         </table>
       </div>
 
+      <section class="mt-14" aria-labelledby="lookup-heading">
+        <h2 id="lookup-heading" class="text-xl font-bold tracking-tight">When was your salary six figures?</h2>
+        <label for="salary" class="mt-4 block text-sm font-medium text-stone-600 dark:text-stone-400">
+          A salary in today's dollars
+        </label>
+        <div class="relative mt-1 max-w-56">
+          <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-stone-500 dark:text-stone-400">$</span>
+          <input
+            id="salary"
+            type="text"
+            inputmode="decimal"
+            autocomplete="off"
+            value={defaultSalary.toLocaleString('en-US')}
+            class="w-full rounded-md border border-stone-300 bg-white py-2 pr-3 pl-7 text-lg tabular-nums shadow-sm focus:border-stone-500 focus:ring-2 focus:ring-stone-400/40 focus:outline-none dark:border-stone-700 dark:bg-stone-900 dark:focus:border-stone-500"
+          />
+        </div>
+        <p id="lookup-result" aria-live="polite" class="mt-4 min-h-14 text-lg text-pretty" set:html={describe(defaultSalary)} />
+      </section>
+
       <footer class="mt-12 space-y-3 text-sm text-pretty text-stone-600 dark:text-stone-400">
         <h2 class="font-semibold text-stone-900 dark:text-stone-100">Sources &amp; method</h2>
         <p>
           <strong class="font-medium text-stone-800 dark:text-stone-200">Today's dollars</strong> use the
           Consumer Price Index for All Urban Consumers (CPI-U) from the{' '}
-          <a class="underline underline-offset-2 hover:text-stone-900 dark:hover:text-stone-100" href={cpiSource}>Bureau of Labor Statistics</a>:
+          <a class={link} href={cpiSource}>Bureau of Labor Statistics</a>:
           each year's annual average, scaled to the latest monthly index ({cpiMonthLabel}). Figures are
           rounded to the nearest $1,000 and update automatically when BLS publishes new CPI data.
         </p>
@@ -105,17 +128,27 @@ const latestSsaYear = baseline.shareYear;
           percentage of all W-2 wage earners, including part-time and part-year workers, whose
           wages were {formatDollars(threshold)} or more that year (not inflation-adjusted), from Social
           Security Administration records:{' '}
-          {ssaSources.map((s, i) => (
-            <>
-              <a class="underline underline-offset-2 hover:text-stone-900 dark:hover:text-stone-100" href={s.source}>{s.year}</a>{i < ssaSources.length - 1 ? ', ' : '.'}
-            </>
-          ))}
-          {' '}{latestSsaYear} is the most recent year SSA has published, so the {baseline.year} row uses
-          {' '}{latestSsaYear} data. Starting in 1991, SSA counts "net compensation," which adds back
+          <a class={link} href="https://www.ssa.gov/oact/NOTES/note135.html">Actuarial Note 135</a> for
+          {' '}{firstYear}–1990 and{' '}
+          <a class={link} href={`https://www.ssa.gov/cgi-bin/netcomp.cgi?year=${latestSsaYear}`}>Wage Statistics</a>
+          {' '}for 1991–{latestSsaYear}. {latestSsaYear} is the most recent year SSA has published, so later
+          years use {latestSsaYear} data. Starting in 1991, SSA counts "net compensation," which adds back
           deferred-compensation contributions such as 401(k) deferrals; for 1991 that raises the share
           from 1.07% to 1.14%.
         </p>
       </footer>
     </main>
+
+    <script>
+      import { describe, parseSalary } from '../lib/sixfigures';
+
+      const input = document.querySelector<HTMLInputElement>('#salary')!;
+      const result = document.querySelector<HTMLElement>('#lookup-result')!;
+
+      input.addEventListener('input', () => {
+        const salary = parseSalary(input.value);
+        result.innerHTML = Number.isFinite(salary) && salary > 0 ? describe(salary) : '';
+      });
+    </script>
   </body>
 </html>

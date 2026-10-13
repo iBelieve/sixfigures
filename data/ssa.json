@@ -9,11 +9,102 @@
       "sourceName": "SSA Actuarial Note 135, Table 11"
     },
     {
+      "year": 1986,
+      "atOrAbove": 730000,
+      "total": 117919000,
+      "source": "https://www.ssa.gov/oact/NOTES/note135.html",
+      "sourceName": "SSA Actuarial Note 135, Table 11"
+    },
+    {
+      "year": 1987,
+      "atOrAbove": 895000,
+      "total": 121995000,
+      "source": "https://www.ssa.gov/oact/NOTES/note135.html",
+      "sourceName": "SSA Actuarial Note 135, Table 11"
+    },
+    {
+      "year": 1988,
+      "atOrAbove": 1078000,
+      "total": 124580000,
+      "source": "https://www.ssa.gov/oact/NOTES/note135.html",
+      "sourceName": "SSA Actuarial Note 135, Table 11"
+    },
+    {
+      "year": 1989,
+      "atOrAbove": 1182000,
+      "total": 128633000,
+      "source": "https://www.ssa.gov/oact/NOTES/note135.html",
+      "sourceName": "SSA Actuarial Note 135, Table 11"
+    },
+    {
       "year": 1990,
       "atOrAbove": 1302000,
       "total": 129705000,
       "source": "https://www.ssa.gov/oact/NOTES/note135.html",
       "sourceName": "SSA Actuarial Note 135, Table 11"
+    },
+    {
+      "year": 1991,
+      "atOrAbove": 1441845,
+      "total": 126207851,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=1991",
+      "sourceName": "SSA Wage Statistics for 1991"
+    },
+    {
+      "year": 1992,
+      "atOrAbove": 1641219,
+      "total": 127105682,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=1992",
+      "sourceName": "SSA Wage Statistics for 1992"
+    },
+    {
+      "year": 1993,
+      "atOrAbove": 1781993,
+      "total": 128728303,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=1993",
+      "sourceName": "SSA Wage Statistics for 1993"
+    },
+    {
+      "year": 1994,
+      "atOrAbove": 1953599,
+      "total": 130571337,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=1994",
+      "sourceName": "SSA Wage Statistics for 1994"
+    },
+    {
+      "year": 1995,
+      "atOrAbove": 2236444,
+      "total": 134211927,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=1995",
+      "sourceName": "SSA Wage Statistics for 1995"
+    },
+    {
+      "year": 1996,
+      "atOrAbove": 2569906,
+      "total": 136560855,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=1996",
+      "sourceName": "SSA Wage Statistics for 1996"
+    },
+    {
+      "year": 1997,
+      "atOrAbove": 3017055,
+      "total": 139348776,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=1997",
+      "sourceName": "SSA Wage Statistics for 1997"
+    },
+    {
+      "year": 1998,
+      "atOrAbove": 3477632,
+      "total": 141759731,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=1998",
+      "sourceName": "SSA Wage Statistics for 1998"
+    },
+    {
+      "year": 1999,
+      "atOrAbove": 4051259,
+      "total": 145060839,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=1999",
+      "sourceName": "SSA Wage Statistics for 1999"
     },
     {
       "year": 2000,
@@ -23,11 +114,158 @@
       "sourceName": "SSA Wage Statistics for 2000"
     },
     {
+      "year": 2001,
+      "atOrAbove": 5087428,
+      "total": 148282344,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2001",
+      "sourceName": "SSA Wage Statistics for 2001"
+    },
+    {
+      "year": 2002,
+      "atOrAbove": 5260825,
+      "total": 148069056,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2002",
+      "sourceName": "SSA Wage Statistics for 2002"
+    },
+    {
+      "year": 2003,
+      "atOrAbove": 5645896,
+      "total": 147722206,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2003",
+      "sourceName": "SSA Wage Statistics for 2003"
+    },
+    {
+      "year": 2004,
+      "atOrAbove": 6308360,
+      "total": 149438752,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2004",
+      "sourceName": "SSA Wage Statistics for 2004"
+    },
+    {
+      "year": 2005,
+      "atOrAbove": 7008004,
+      "total": 151603359,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2005",
+      "sourceName": "SSA Wage Statistics for 2005"
+    },
+    {
+      "year": 2006,
+      "atOrAbove": 7925703,
+      "total": 153852734,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2006",
+      "sourceName": "SSA Wage Statistics for 2006"
+    },
+    {
+      "year": 2007,
+      "atOrAbove": 8869798,
+      "total": 155570422,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2007",
+      "sourceName": "SSA Wage Statistics for 2007"
+    },
+    {
+      "year": 2008,
+      "atOrAbove": 9645771,
+      "total": 155434562,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2008",
+      "sourceName": "SSA Wage Statistics for 2008"
+    },
+    {
+      "year": 2009,
+      "atOrAbove": 9450480,
+      "total": 150917733,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2009",
+      "sourceName": "SSA Wage Statistics for 2009"
+    },
+    {
       "year": 2010,
       "atOrAbove": 9855964,
       "total": 150398796,
       "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2010",
       "sourceName": "SSA Wage Statistics for 2010"
+    },
+    {
+      "year": 2011,
+      "atOrAbove": 10692883,
+      "total": 151380749,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2011",
+      "sourceName": "SSA Wage Statistics for 2011"
+    },
+    {
+      "year": 2012,
+      "atOrAbove": 11430198,
+      "total": 153632290,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2012",
+      "sourceName": "SSA Wage Statistics for 2012"
+    },
+    {
+      "year": 2013,
+      "atOrAbove": 12083617,
+      "total": 155772341,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2013",
+      "sourceName": "SSA Wage Statistics for 2013"
+    },
+    {
+      "year": 2014,
+      "atOrAbove": 13056679,
+      "total": 158186786,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2014",
+      "sourceName": "SSA Wage Statistics for 2014"
+    },
+    {
+      "year": 2015,
+      "atOrAbove": 14213375,
+      "total": 160794699,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2015",
+      "sourceName": "SSA Wage Statistics for 2015"
+    },
+    {
+      "year": 2016,
+      "atOrAbove": 14850742,
+      "total": 163520606,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2016",
+      "sourceName": "SSA Wage Statistics for 2016"
+    },
+    {
+      "year": 2017,
+      "atOrAbove": 15906394,
+      "total": 165438239,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2017",
+      "sourceName": "SSA Wage Statistics for 2017"
+    },
+    {
+      "year": 2018,
+      "atOrAbove": 17263120,
+      "total": 167669326,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2018",
+      "sourceName": "SSA Wage Statistics for 2018"
+    },
+    {
+      "year": 2019,
+      "atOrAbove": 18648286,
+      "total": 169328746,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2019",
+      "sourceName": "SSA Wage Statistics for 2019"
+    },
+    {
+      "year": 2020,
+      "atOrAbove": 19701733,
+      "total": 167593971,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2020",
+      "sourceName": "SSA Wage Statistics for 2020"
+    },
+    {
+      "year": 2021,
+      "atOrAbove": 21899478,
+      "total": 168133174,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2021",
+      "sourceName": "SSA Wage Statistics for 2021"
+    },
+    {
+      "year": 2022,
+      "atOrAbove": 25199523,
+      "total": 172030932,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2022",
+      "sourceName": "SSA Wage Statistics for 2022"
     },
     {
       "year": 2023,
