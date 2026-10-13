@@ -1,0 +1,40 @@
+{
+  "threshold": 100000,
+  "years": [
+    {
+      "year": 1985,
+      "atOrAbove": 644000,
+      "total": 117588000,
+      "source": "https://www.ssa.gov/oact/NOTES/note135.html",
+      "sourceName": "SSA Actuarial Note 135, Table 11"
+    },
+    {
+      "year": 1990,
+      "atOrAbove": 1302000,
+      "total": 129705000,
+      "source": "https://www.ssa.gov/oact/NOTES/note135.html",
+      "sourceName": "SSA Actuarial Note 135, Table 11"
+    },
+    {
+      "year": 2000,
+      "atOrAbove": 4733357,
+      "total": 148113768,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2000",
+      "sourceName": "SSA Wage Statistics for 2000"
+    },
+    {
+      "year": 2010,
+      "atOrAbove": 9855964,
+      "total": 150398796,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2010",
+      "sourceName": "SSA Wage Statistics for 2010"
+    },
+    {
+      "year": 2023,
+      "atOrAbove": 27587910,
+      "total": 173670935,
+      "source": "https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2023",
+      "sourceName": "SSA Wage Statistics for 2023"
+    }
+  ]
+}

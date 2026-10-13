@@ -1,0 +1,121 @@
+---
+import '../styles/global.css';
+import {
+  rows,
+  threshold,
+  cpiMonthLabel,
+  cpiSource,
+  ssaSources,
+  formatDollars,
+  formatThousands,
+  formatPercent,
+  oneIn,
+} from '../lib/sixfigures';
+
+const title = "What's Six Figures Worth?";
+const first = rows[0];
+const baseline = rows[rows.length - 1];
+const description =
+  `${formatThousands(threshold)} in ${first.year} = ${formatThousands(first.todayDollars)} today. ` +
+  `About 1 in ${oneIn(first.share)} earners made six figures then; about 1 in ${oneIn(baseline.share)} do now.`;
+const canonical = new URL('/', Astro.site).href;
+const latestSsaYear = baseline.shareYear;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="color-scheme" content="light dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script is:inline async src="https://analytics.sonrise.io/js/pa-y000lNTGzOZOMGzuz9esE.js"></script>
+    <script is:inline>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
+  </head>
+  <body class="bg-stone-50 text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-100">
+    <main class="mx-auto max-w-2xl px-4 py-12 sm:py-20">
+      <h1 class="text-3xl font-bold tracking-tight text-balance sm:text-4xl">{title}</h1>
+      <p class="mt-4 text-lg text-pretty text-stone-600 dark:text-stone-400">
+        A {formatDollars(threshold)} salary was a big deal in {first.year}. Here's what it means in
+        today's dollars, and how many people actually earned it.
+      </p>
+
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full text-sm tabular-nums sm:text-base">
+          <thead>
+            <tr class="border-b border-stone-300 text-left align-bottom text-xs font-semibold tracking-wide text-stone-500 uppercase dark:border-stone-700 dark:text-stone-400">
+              <th scope="col" class="py-2 pr-2 sm:pr-3">Year</th>
+              <th scope="col" class="px-2 py-2 text-right sm:px-3">Salary then</th>
+              <th scope="col" class="px-2 py-2 text-right sm:px-3">In {cpiMonthLabel} dollars</th>
+              <th scope="col" class="py-2 pl-2 text-right sm:pl-3">Earners at {formatThousands(threshold)}+</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr
+                class:list={[
+                  'border-b border-stone-200 dark:border-stone-800',
+                  row.isBaseline && 'bg-stone-100 font-medium dark:bg-stone-900',
+                ]}
+              >
+                <th scope="row" class="py-3 pr-2 text-left font-semibold sm:pr-3">{row.year}</th>
+                <td class="px-2 py-3 text-right sm:px-3 text-stone-500 dark:text-stone-400">{formatDollars(threshold)}</td>
+                <td class="px-2 py-3 text-right sm:px-3 font-semibold">{formatDollars(row.todayDollars)}</td>
+                <td class="py-3 pl-2 text-right sm:pl-3">
+                  {formatPercent(row.share)}
+                  <span class="block text-xs whitespace-nowrap text-stone-500 dark:text-stone-400">
+                    about 1 in {oneIn(row.share)}
+                  </span>
+                  {row.shareYear !== row.year && (
+                    <span class="block text-xs text-stone-500 dark:text-stone-400">({row.shareYear} data)</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <footer class="mt-12 space-y-3 text-sm text-pretty text-stone-600 dark:text-stone-400">
+        <h2 class="font-semibold text-stone-900 dark:text-stone-100">Sources &amp; method</h2>
+        <p>
+          <strong class="font-medium text-stone-800 dark:text-stone-200">Today's dollars</strong> use the
+          Consumer Price Index for All Urban Consumers (CPI-U) from the{' '}
+          <a class="underline underline-offset-2 hover:text-stone-900 dark:hover:text-stone-100" href={cpiSource}>Bureau of Labor Statistics</a>:
+          each year's annual average, scaled to the latest monthly index ({cpiMonthLabel}). Figures are
+          rounded to the nearest $1,000 and update automatically when BLS publishes new CPI data.
+        </p>
+        <p>
+          <strong class="font-medium text-stone-800 dark:text-stone-200">Earner shares</strong> are the
+          percentage of all W-2 wage earners, including part-time and part-year workers, whose
+          wages were {formatDollars(threshold)} or more that year (not inflation-adjusted), from Social
+          Security Administration records:{' '}
+          {ssaSources.map((s, i) => (
+            <>
+              <a class="underline underline-offset-2 hover:text-stone-900 dark:hover:text-stone-100" href={s.source}>{s.year}</a>{i < ssaSources.length - 1 ? ', ' : '.'}
+            </>
+          ))}
+          {' '}{latestSsaYear} is the most recent year SSA has published, so the {baseline.year} row uses
+          {' '}{latestSsaYear} data. Starting in 1991, SSA counts "net compensation," which adds back
+          deferred-compensation contributions such as 401(k) deferrals; for 1991 that raises the share
+          from 1.07% to 1.14%.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "series": "CUUR0000SA0",
+  "source": "https://data.bls.gov/timeseries/CUUR0000SA0",
+  "annual": {
+    "1985": 107.6,
+    "1990": 130.7,
+    "2000": 172.2,
+    "2010": 218.056
+  },
+  "latest": {
+    "year": 2026,
+    "month": 8,
+    "value": 334.98
+  }
+}

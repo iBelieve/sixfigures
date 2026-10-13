@@ -1,0 +1,39 @@
+name: Update CPI data
+
+on:
+  schedule:
+    # Daily, after BLS's 8:30am ET release time.
+    - cron: '0 15 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-cpi
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+
+      - run: node scripts/update-cpi.mjs
+
+      # The push to master triggers a Cloudflare Workers Builds deploy.
+      - name: Commit if changed
+        run: |
+          if git diff --quiet data/cpi.json; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/cpi.json
+          git commit -m "Update CPI data to $(node -p "const l=require('./data/cpi.json').latest; l.year+'-'+String(l.month).padStart(2,'0')")"
+          git push

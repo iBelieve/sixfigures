@@ -1,0 +1,20 @@
+{
+  "name": "sixfigures",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "update-cpi": "node scripts/update-cpi.mjs",
+    "deploy": "astro build && wrangler deploy"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.8",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "wrangler": "^4.149.0"
+  }
+}
