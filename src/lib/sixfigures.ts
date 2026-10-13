@@ -59,12 +59,13 @@ export const formatDollars = (n: number) => usd.format(Math.round(n / 1000) * 10
 /** Short form for meta descriptions, e.g. "$311k". */
 export const formatThousands = (n: number) => `$${Math.round(n / 1000)}k`;
 
-export const formatPercent = (share: number) => `${(share * 100).toFixed(1)}%`;
+export const formatPercent = (share: number) =>
+  share < 0.0005 ? 'under 0.1%' : `${(share * 100).toFixed(1)}%`;
 
 /** N in "1 in N", from the exact share: two significant figures, whole numbers below 10. */
 export function oneIn(share: number) {
   const n = 1 / share;
-  return n < 10 ? Math.round(n) : Number(n.toPrecision(2));
+  return (n < 10 ? Math.round(n) : Number(n.toPrecision(2))).toLocaleString('en-US');
 }
 
 export type Lookup =
@@ -114,16 +115,39 @@ export function describe(salary: number) {
     case 'under':
       return `${amount} is under six figures, even today.`;
     case 'over':
-      return `${amount} is more than six figures was worth even in ${firstYear} (${formatDollars(result.earliestEquivalent)} in today's dollars).`;
+      return `${amount} is more than six figures was worth even in ${firstYear} (${formatDollars(result.earliestEquivalent)} in today's dollars). Today, ${todaySentence(salary)}`;
     case 'match': {
       const share = `about 1 in ${oneIn(result.share)} earners (${formatPercent(result.share)})`;
       const dataNote = result.shareYear !== result.year ? ` (${result.shareYear} data)` : '';
       if (result.year === currentYear) {
-        return `${amount} is six figures right now. ${capitalize(share)} make $100,000 or more${dataNote}.`;
+        return `${amount} is six figures right now. ${capitalize(todaySentence(salary))}`;
       }
-      return `${amount} today is what six figures was worth in <strong>${result.year}</strong>. That year, ${share} made $100,000 or more${dataNote}.`;
+      return `${amount} today is what six figures was worth in <strong>${result.year}</strong>. That year, ${share} made $100,000 or more${dataNote}. Today, ${todaySentence(salary)}`;
     }
   }
 }
 
 const capitalize = (s: string) => s[0].toUpperCase() + s.slice(1);
+
+const { brackets, total: distributionTotal, year: distributionYear } = ssa.distribution;
+
+/**
+ * Share of earners in the latest SSA year making at least `salary` (not inflation-adjusted),
+ * interpolated log-linearly within SSA's wage brackets.
+ */
+export function shareAtOrAbove(salary: number) {
+  const top = brackets[brackets.length - 1];
+  if (salary >= top[0]) return { share: top[1] / distributionTotal, capped: salary > top[0] };
+  const i = brackets.findIndex(([lo]) => lo > salary) - 1;
+  if (i < 0) throw new Error(`No bracket for ${salary}`);
+  const [lo, a] = brackets[i];
+  const [hi, b] = brackets[i + 1];
+  const t = Math.log(salary / lo) / Math.log(hi / lo);
+  return { share: Math.exp(Math.log(a) + t * Math.log(b / a)) / distributionTotal, capped: false };
+}
+
+function todaySentence(salary: number) {
+  const { share, capped } = shareAtOrAbove(salary);
+  const amount = capped ? usdExact.format(brackets[brackets.length - 1][0]) : 'that much';
+  return `about 1 in ${oneIn(share)} earners (${formatPercent(share)}) make ${amount} or more (${distributionYear} data).`;
+}

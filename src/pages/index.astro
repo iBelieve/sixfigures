@@ -132,7 +132,8 @@ const link = 'underline underline-offset-2 hover:text-stone-900 dark:hover:text-
           {' '}{firstYear}–1990 and{' '}
           <a class={link} href={`https://www.ssa.gov/cgi-bin/netcomp.cgi?year=${latestSsaYear}`}>Wage Statistics</a>
           {' '}for 1991–{latestSsaYear}. {latestSsaYear} is the most recent year SSA has published, so later
-          years use {latestSsaYear} data. Starting in 1991, SSA counts "net compensation," which adds back
+          years use {latestSsaYear} data. The salary lookup's share of earners today uses SSA's
+          {' '}{latestSsaYear} wage brackets, interpolated between bracket edges. Starting in 1991, SSA counts "net compensation," which adds back
           deferred-compensation contributions such as 401(k) deferrals; for 1991 that raises the share
           from 1.07% to 1.14%.
         </p>
