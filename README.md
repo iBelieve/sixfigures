@@ -11,6 +11,8 @@ Live at https://sixfigures.mspencer.io
 
 ## Development
 
+Node 26 (see `.node-version`).
+
 ```bash
 npm install
 npm run dev          # local dev server
