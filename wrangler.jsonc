@@ -8,5 +8,8 @@
   },
   "routes": [
     { "pattern": "sixfigures.mspencer.io", "custom_domain": true }
-  ]
+  ],
+  // Workers Builds deploys non-production branches with `wrangler preview`,
+  // which requires this block even when Preview settings match production.
+  "previews": {}
 }
